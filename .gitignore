@@ -1,0 +1,21 @@
+# environment
+.env
+.env.local
+.env.*.local
+
+# dependencies
+node_modules/
+
+# build output
+.next/
+out/
+
+# typescript
+tsconfig.tsbuildinfo
+next-env.d.ts
+
+# system
+.DS_Store
+
+# livros e materiais internos
+Livros_e_Ebooks/

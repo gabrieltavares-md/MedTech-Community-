@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary:   #FAFAFA;
+    --bg-surface:   #FFFFFF;
+    --border-color: #E5E5E5;
+    --text-primary: #111111;
+    --text-muted:   #888888;
+  }
+
+  .dark {
+    --bg-primary:   #111111;
+    --bg-surface:   #1A1A1A;
+    --border-color: #333333;
+    --text-primary: #FAFAFA;
+    --text-muted:   #999999;
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  body {
+    @apply font-sans antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .bg-page      { background-color: var(--bg-primary); }
+  .bg-surface   { background-color: var(--bg-surface); }
+  .border-theme { border-color: var(--border-color); }
+  .text-theme   { color: var(--text-primary); }
+  .text-muted   { color: var(--text-muted); }
+}
+
+/* ─── Ebook Reader — prose dark mode overrides ─── */
+.prose-ebook {
+  --tw-prose-body: #c8d6e5;
+  --tw-prose-headings: #ffffff;
+  --tw-prose-lead: #a3b8cc;
+  --tw-prose-links: #6370E0;
+  --tw-prose-bold: #ffffff;
+  --tw-prose-quotes: #a3b8cc;
+  --tw-prose-quote-borders: #3B4ABF;
+  --tw-prose-counters: #a3b8cc;
+  --tw-prose-bullets: #3B4ABF;
+  --tw-prose-hr: rgba(0, 240, 255, 0.12);
+  --tw-prose-th-borders: rgba(0, 240, 255, 0.12);
+  --tw-prose-td-borders: rgba(0, 240, 255, 0.08);
+  --tw-prose-code: #00f0ff;
+  --tw-prose-pre-bg: #080c14;
+  --tw-prose-pre-code: #c8d6e5;
+  --tw-prose-captions: #a3b8cc;
+}
+
+.prose-ebook h2,
+.prose-ebook h3,
+.prose-ebook h4 {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.prose-ebook blockquote {
+  border-left-color: #3B4ABF;
+  background: rgba(59, 74, 191, 0.06);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.25rem;
+}
+
+.prose-ebook table {
+  font-size: 0.875rem;
+}
+
+.prose-ebook th {
+  background: #080c14;
+  color: #ffffff;
+}
+
+.prose-ebook td {
+  border-color: rgba(0, 240, 255, 0.08);
+}
+
+.prose-ebook details {
+  background: rgba(0, 240, 255, 0.04);
+  border: 1px solid rgba(0, 240, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.prose-ebook details summary {
+  cursor: pointer;
+  color: #6370E0;
+}
+
+.prose-ebook code {
+  background: rgba(0, 240, 255, 0.08);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.875em;
+}
