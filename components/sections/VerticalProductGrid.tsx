@@ -57,7 +57,7 @@ export default function VerticalProductGrid({
 
   return (
     <motion.div
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
       variants={shouldReduce ? undefined : containerVariants}
       initial={shouldReduce ? undefined : "hidden"}
       whileInView={shouldReduce ? undefined : "visible"}
@@ -68,12 +68,16 @@ export default function VerticalProductGrid({
         <motion.div
           key={p.id}
           variants={shouldReduce ? undefined : itemVariants}
-          className="group bg-[#080c14] border border-[rgba(0,240,255,0.08)] rounded-card p-6 flex flex-col gap-4 hover:border-[rgba(0,240,255,0.18)] hover:bg-[#0d1120] transition-all duration-200 relative overflow-hidden"
+          className={`group bg-[#080c14] border border-[rgba(0,240,255,0.08)] rounded-card p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 transition-all duration-200 relative overflow-hidden ${
+            p.badgeActive
+              ? "hover:border-[rgba(0,240,255,0.18)] hover:bg-[#0d1120]"
+              : "opacity-50"
+          }`}
         >
           {/* Top accent bar */}
           <div
             className="absolute top-0 left-0 right-0 h-1 rounded-t-card"
-            style={{ backgroundColor: accentColor }}
+            style={{ backgroundColor: p.badgeActive ? accentColor : `${accentColor}40` }}
           />
 
           {/* Icon + Badge */}
@@ -101,15 +105,26 @@ export default function VerticalProductGrid({
           </div>
 
           {/* CTA */}
-          <Button
-            href={p.ctaHref}
-            variant={p.badgeActive ? "primary" : "secondary"}
-            size="sm"
-            verticalColor={p.badgeActive ? accentColor : undefined}
-            className="w-full justify-center mt-auto"
-          >
-            {p.ctaLabel}
-          </Button>
+          {p.badgeActive ? (
+            <Button
+              href={p.ctaHref}
+              variant="primary"
+              size="sm"
+              verticalColor={accentColor}
+              className="w-full justify-center mt-auto"
+            >
+              {p.ctaLabel}
+            </Button>
+          ) : (
+            <Button
+              variant="secondary"
+              size="sm"
+              disabled
+              className="w-full justify-center mt-auto"
+            >
+              Em Breve
+            </Button>
+          )}
         </motion.div>
       ))}
     </motion.div>

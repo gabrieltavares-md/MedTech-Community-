@@ -26,7 +26,7 @@ const products = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
       </svg>
     ),
-    title: "Ebooks Técnicos",
+    title: "Ebooks",
     description: "Guias profundos de bolso para consulta rápida na beira leito.",
     badge: "Ativo",
     badgeActive: true,
@@ -41,11 +41,11 @@ const products = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 3.741-1.342" />
       </svg>
     ),
-    title: "Cursos MedTech",
-    description: "Formação completa com certificação para profissionais de ponta.",
+    title: "Academia MedTech",
+    description: "Um Ambiente em desenvolvimento voltado para a facilitação da Aprendizagem sobre IA, Anestesiologia, Medicina Perioperatória e Terapia Intensiva. Cada uma das Comunidades é voltada para um grupo específico",
     badge: "Em Breve",
     badgeActive: false,
-    ctaLabel: "Lista de Espera",
+    ctaLabel: "Faça parte dessa comunidade que procura se adaptar ao século XXI para essa jornada ",
     ctaHref: "#",
     ctaExternal: false,
   },
@@ -105,7 +105,7 @@ export default function ProductGrid() {
 
         {/* Grid */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"
           variants={shouldReduce ? undefined : containerVariants}
           initial={shouldReduce ? undefined : "hidden"}
           whileInView={shouldReduce ? undefined : "visible"}
@@ -115,17 +115,23 @@ export default function ProductGrid() {
             <motion.div
               key={p.id}
               variants={shouldReduce ? undefined : itemVariants}
-              className="group bg-[#02040a] border border-[rgba(0,240,255,0.08)] rounded-card p-6 flex flex-col gap-4 hover:border-[rgba(0,240,255,0.18)] hover:bg-[#080c14] transition-all duration-200 relative cursor-pointer"
+              className={`group bg-[#02040a] border border-[rgba(0,240,255,0.08)] rounded-card p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 transition-all duration-200 relative ${
+                p.badgeActive
+                  ? "hover:border-[rgba(0,240,255,0.18)] hover:bg-[#080c14] cursor-pointer"
+                  : "opacity-50 cursor-default"
+              }`}
             >
-              {/* Stretch link — makes the entire card clickable */}
-              <a
-                href={p.ctaHref}
-                className="absolute inset-0 z-0"
-                aria-hidden
-                tabIndex={-1}
-                target={p.ctaExternal ? "_blank" : undefined}
-                rel={p.ctaExternal ? "noopener noreferrer" : undefined}
-              />
+              {/* Stretch link — only for active cards */}
+              {p.badgeActive && (
+                <a
+                  href={p.ctaHref}
+                  className="absolute inset-0 z-0"
+                  aria-hidden
+                  tabIndex={-1}
+                  target={p.ctaExternal ? "_blank" : undefined}
+                  rel={p.ctaExternal ? "noopener noreferrer" : undefined}
+                />
+              )}
 
               {/* Icon + Badge row */}
               <div className="flex items-start justify-between">
@@ -148,16 +154,27 @@ export default function ProductGrid() {
               </div>
 
               {/* CTA */}
-              <Button
-                href={p.ctaHref}
-                variant={p.badgeActive ? "primary" : "secondary"}
-                size="sm"
-                className="relative z-10 w-full justify-center mt-auto"
-                target={p.ctaExternal ? "_blank" : undefined}
-                rel={p.ctaExternal ? "noopener noreferrer" : undefined}
-              >
-                {p.ctaLabel}
-              </Button>
+              {p.badgeActive ? (
+                <Button
+                  href={p.ctaHref}
+                  variant="primary"
+                  size="sm"
+                  className="relative z-10 w-full justify-center mt-auto"
+                  target={p.ctaExternal ? "_blank" : undefined}
+                  rel={p.ctaExternal ? "noopener noreferrer" : undefined}
+                >
+                  {p.ctaLabel}
+                </Button>
+              ) : (
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  disabled
+                  className="w-full justify-center mt-auto"
+                >
+                  Em Breve
+                </Button>
+              )}
             </motion.div>
           ))}
         </motion.div>

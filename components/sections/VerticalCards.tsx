@@ -13,6 +13,7 @@ const verticals = [
     ctaLabel: "Explorar Trilha",
     route: "/ia",
     accentColor: COLORS.indigo[600],
+    available: true,
   },
   {
     id: "critical-care",
@@ -22,6 +23,7 @@ const verticals = [
     ctaLabel: "Explorar Trilha",
     route: "/critical-care",
     accentColor: COLORS.terra[600],
+    available: true,
   },
   {
     id: "anestesiologia",
@@ -31,6 +33,7 @@ const verticals = [
     ctaLabel: "Explorar Trilha",
     route: "/anestesiologia",
     accentColor: COLORS.steel[600],
+    available: false,
   },
 ];
 
@@ -62,7 +65,7 @@ export default function VerticalCards({ id }: VerticalCardsProps) {
         </h2>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6"
           variants={shouldReduce ? undefined : containerVariants}
           initial={shouldReduce ? undefined : "hidden"}
           whileInView={shouldReduce ? undefined : "visible"}
@@ -72,30 +75,49 @@ export default function VerticalCards({ id }: VerticalCardsProps) {
             <motion.div
               key={v.id}
               variants={shouldReduce ? undefined : cardVariants}
-              className="group bg-[#080c14] border border-[rgba(0,240,255,0.08)] rounded-card p-6 flex flex-col hover:bg-[#0d1120] hover:border-[rgba(0,240,255,0.18)] transition-all duration-200 relative overflow-hidden cursor-pointer"
+              className={`group bg-[#080c14] border border-[rgba(0,240,255,0.08)] rounded-card p-4 sm:p-6 flex flex-col transition-all duration-200 relative overflow-hidden ${
+                v.available
+                  ? "hover:bg-[#0d1120] hover:border-[rgba(0,240,255,0.18)] cursor-pointer"
+                  : "opacity-50 cursor-default"
+              }`}
             >
-              {/* Stretch link — makes the entire card clickable */}
-              <Link href={v.route} className="absolute inset-0 z-0" aria-hidden tabIndex={-1} />
+              {/* Stretch link — only for available cards */}
+              {v.available && (
+                <Link href={v.route} className="absolute inset-0 z-0" aria-hidden tabIndex={-1} />
+              )}
 
               {/* Top accent border */}
               <div
                 className="absolute top-0 left-0 right-0 h-1 rounded-t-card"
-                style={{ backgroundColor: v.accentColor }}
+                style={{ backgroundColor: v.available ? v.accentColor : `${v.accentColor}40` }}
               />
 
-              <h3 className="text-lg font-medium text-white mt-2 mb-3">{v.title}</h3>
+              {/* Badge for unavailable */}
+              {!v.available && (
+                <span className="self-end text-[10px] font-medium uppercase tracking-widest px-2 py-0.5 rounded-chip bg-white/5 text-[#a3b8cc]/50 mt-1 mb-1">
+                  Em Breve
+                </span>
+              )}
+
+              <h3 className={`text-lg font-medium mt-2 mb-3 ${v.available ? "text-white" : "text-white"}`}>{v.title}</h3>
               <p className="text-sm text-[#a3b8cc] leading-relaxed flex-1">{v.description}</p>
 
-              <Link
-                href={v.route}
-                className="relative z-10 inline-flex items-center gap-1.5 mt-6 text-sm font-medium transition-opacity duration-200 hover:opacity-70"
-                style={{ color: v.accentColor }}
-              >
-                {v.ctaLabel}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                </svg>
-              </Link>
+              {v.available ? (
+                <Link
+                  href={v.route}
+                  className="relative z-10 inline-flex items-center gap-1.5 mt-6 text-sm font-medium transition-opacity duration-200 hover:opacity-70"
+                  style={{ color: v.accentColor }}
+                >
+                  {v.ctaLabel}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                  </svg>
+                </Link>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 mt-6 text-sm font-medium text-[#a3b8cc]/40">
+                  Em Breve
+                </span>
+              )}
             </motion.div>
           ))}
         </motion.div>
