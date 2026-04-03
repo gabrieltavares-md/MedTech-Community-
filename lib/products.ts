@@ -71,7 +71,7 @@ export const IA_PRODUCTS: Product[] = [
     badge: "Disponível",
     badgeActive: true,
     ctaLabel: "Acessar Guia",
-    ctaHref: "#",
+    ctaHref: "/ia/dominando-claude",
     vertical: "ia",
   },
   {
@@ -137,6 +137,22 @@ export const IA_PRODUCTS: Product[] = [
     ctaLabel: "Lista de Espera",
     ctaHref: "#",
     vertical: "ia",
+  },
+];
+
+export const CRITICAL_CARE_PRODUCTS: Product[] = [
+  // --- Guidelines ---
+  {
+    id: "guide-sava",
+    title: "SAVA — Suporte Avançado de Vida em Anestesia",
+    description:
+      "Site oficial do curso SAVA. Algoritmos, protocolos e materiais do Suporte Avançado de Vida em Anestesia da SBA.",
+    category: "guideline",
+    badge: "Site Oficial",
+    badgeActive: true,
+    ctaLabel: "Acessar Site",
+    ctaHref: "SAVA_URL_PLACEHOLDER",
+    vertical: "critical-care",
   },
 ];
 

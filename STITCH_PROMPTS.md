@@ -65,41 +65,7 @@ STYLE:
 ### PROMPT 2 — Seção das 3 Verticais
 
 ```
-Add a section below the hero showing the 3 content verticals.
-
-LAYOUT:
-- Section title: "Três pilares. Uma comunidade." (28px, weight 500)
-- Subtitle: "Conteúdo especializado para cada área da sua prática" (16px, #888)
-- Three cards in a horizontal row with equal width
-
-CARD 1 — MedTech AI:
-- Top accent: 3px border-top in #3B4ABF (indigo)
-- Icon area: simple geometric shape in indigo
-- Title: "Inteligência Artificial" (18px, weight 500)
-- Description: "Domine ferramentas de IA, prompt engineering e 
-  automação para potencializar seus estudos e prática clínica."
-- CTA link: "Explorar IA →" in indigo
-
-CARD 2 — MedTech Critical Care:
-- Top accent: 3px border-top in #B84430 (terracotta)
-- Title: "Terapia Intensiva"
-- Description: "Protocolos, calculadoras e conteúdo baseado em 
-  evidência para o cuidado do paciente crítico."
-- CTA link: "Explorar Critical Care →" in terracotta
-
-CARD 3 — MedTech Anesthesiology:
-- Top accent: 3px border-top in #1A5C99 (steel blue)
-- Title: "Anestesiologia"
-- Description: "Preparação TSA, capítulos atualizados, questões 
-  e flashcards para dominar a especialidade."
-- CTA link: "Explorar Anestesiologia →" in steel blue
-
-STYLE:
-- White background section
-- Cards: white bg, 0.5px #E5E5E5 border, 12px radius, 24px padding
-- Hover: border darkens to #888, subtle scale 1.02
-- Gap between cards: 24px
-- Max width: 1200px centered
+w
 ```
 
 ### PROMPT 3 — Seção Sobre o Gabriel
