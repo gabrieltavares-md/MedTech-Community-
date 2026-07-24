@@ -20,10 +20,6 @@ There is no test suite configured in this repo (no test script, no test runner i
 
 ## Architecture
 
-### Route groups and the dual root-layout quirk
-
-All current pages live under the `app/(dark)/` route group (`app/(dark)/page.tsx` is the homepage; there is no `app/page.tsx`). **Both `app/layout.tsx` and `app/(dark)/layout.tsx` independently render their own `<html>`/`<body>`** — this is atypical for Next.js App Router (normally only the outermost root layout does). It works today only because every route currently resolves through `(dark)`. If you ever add a page outside `(dark)` (e.g. a future `(light)` group), check how layout nesting resolves before assuming `app/layout.tsx` behaves as a normal shared root layout.
-
 ### Vertical system (`lib/verticals.ts`, `lib/products.ts`, `lib/tokens.ts`)
 
 The site is organized around three "verticals," each with its own accent color and route:
