@@ -13,7 +13,7 @@
 
 ## Requirement Completeness
 
-- [ ] **No [NEEDS CLARIFICATION] markers remain** ← **ÚNICO ITEM REPROVADO**
+- [x] No [NEEDS CLARIFICATION] markers remain *(resolvido 2026-07-24 — Q1-A e Q2-C)*
 - [x] Requirements are testable and unambiguous
 - [x] Success criteria are measurable
 - [x] Success criteria are technology-agnostic (no implementation details)
@@ -31,24 +31,23 @@
 
 ## Notes
 
-**Estado: 15 de 16 itens aprovados. 1 reprovado, deliberadamente.**
+**Estado: 16 de 16 itens aprovados.** Especificação liberada para planejamento.
 
-### Item reprovado
+### Esclarecimentos — resolvidos em 2026-07-24
 
-`No [NEEDS CLARIFICATION] markers remain` — a especificação tem **2 esclarecimentos abertos**,
-apresentados como Q1 e Q2 na seção "Esclarecimentos pendentes" do `spec.md`:
+Os 2 itens que bloqueavam foram decididos pelo dono e viraram requisito testável:
 
-- **Q1 — abrangência inicial**: cobrir o código existente agora, ou só canários + exigência
-  daqui pra frente?
-- **Q2 — onde executa**: só sob demanda, ou também automaticamente a cada PR bloqueando
-  mesclagem?
+- **Q1 → A**: só canários por camada + exigência para código novo. Cobertura do código
+  pré-existente fica fora desta onda. → **FR-017**
+- **Q2 → C**: etapa rápida automática a cada PR condicionando mesclagem; etapa completa
+  (navegador) sob demanda. → **FR-018**
 
-Ambos passam o teste de "não existe default razoável": mudam materialmente o tamanho da entrega
-e são decisão de dono, não de implementador. Dentro do limite de 3 marcadores que o
-`/speckit-specify` impõe, e priorizados por escopo — o critério que o próprio comando manda usar.
+Ambos passavam o teste de "não existe default razoável" — mudavam materialmente o tamanho da
+entrega e eram decisão de dono, não de implementador.
 
-**Consequência**: `/speckit-plan` não deve rodar antes de Q1 e Q2 serem respondidas. Rodar antes
-produziria um plano dimensionado para um escopo que o dono não escolheu.
+**Consequência da Q2-C, registrada no plano**: contraste de cor fica **fora** do gate automático,
+porque a regra do axe não roda em jsdom. Trade-off consciente, declarado no Constitution Check do
+`plan.md` e na regra operacional do `contracts/verification-commands.md`.
 
 ### Verificações de conteúdo — como cada item foi avaliado
 

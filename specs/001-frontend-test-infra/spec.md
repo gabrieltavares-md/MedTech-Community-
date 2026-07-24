@@ -4,7 +4,7 @@
 
 **Created**: 2026-07-24
 
-**Status**: Draft — 2 esclarecimentos pendentes (ver Q1/Q2 ao final)
+**Status**: Ready for planning — esclarecimentos resolvidos em 2026-07-24
 
 **Input**: User description: "Antes de implementar o SPEC do fluxo multiagêntico para o frontend, criar a infraestrutura de teste."
 
@@ -165,6 +165,12 @@ que a verificação a aponta.
   o custo de execução não desestimule o uso (ver SC-002).
 - **FR-016**: O sistema DEVE poder ser executado em ambiente recém-clonado seguindo instruções
   documentadas, sem conhecimento tácito.
+- **FR-017**: O escopo desta entrega DEVE incluir exatamente uma verificação-canário por camada.
+  Cobrir o código pré-existente está **fora de escopo**; a verificação passa a ser exigida para
+  código novo ou alterado. *(decisão Q1-A, 2026-07-24)*
+- **FR-018**: A etapa rápida DEVE ser executada automaticamente a cada proposta de mudança, com o
+  resultado condicionando a mesclagem. A etapa completa (navegador) permanece sob demanda.
+  *(decisão Q2-C, 2026-07-24)*
 
 ## Success Criteria *(mandatory)*
 
@@ -205,9 +211,10 @@ que a verificação a aponta.
 
 ---
 
-## Esclarecimentos pendentes
+## Esclarecimentos resolvidos
 
-Dois pontos de escopo sem default razoável. Ambos mudam materialmente o tamanho da entrega.
+Dois pontos de escopo sem default razoável, decididos pelo dono em 2026-07-24.
+Ambos viraram requisito testável (FR-017 e FR-018).
 
 ### Q1: Abrangência inicial da verificação
 
@@ -224,7 +231,9 @@ apenas montar as camadas com canários e passar a exigir verificação para cód
 | C | Cobertura completa do que existe hoje | Entrega grande; atrasa o pipeline multiagêntico que depende disto |
 | Custom | Outro recorte | Descreva o critério de corte |
 
-**Your choice**: _aguardando_
+**Your choice**: **A — só canários + exigência daqui pra frente.** Menor onda que destrava o
+pipeline multiagêntico, conforme Princípio III. Cobertura do código pré-existente vira onda
+própria. → **FR-017**
 
 ### Q2: Onde a verificação é executada
 
@@ -241,4 +250,6 @@ automaticamente a cada PR, com resultado bloqueando a mesclagem?
 | C | Automático só para a etapa rápida; a completa sob demanda | Meio-termo: feedback automático barato, camada cara fica manual |
 | Custom | Outro arranjo | Descreva |
 
-**Your choice**: _aguardando_
+**Your choice**: **C — etapa rápida automática, completa sob demanda.** Torna o gate real onde
+ele é barato e estável, sem pagar custo e instabilidade de navegador em toda proposta de
+mudança. → **FR-018**
